@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_insta_challenge/posts.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +40,30 @@ class HomePage extends StatelessWidget {
       ),
       body: SafeArea(
         child: Center(
-          child: Text('Hello World!'),
+          child: ListView.builder(
+              itemCount: posts_.length,
+              itemBuilder: (context, index) {
+                return Posts(
+                    username: posts_[index].username,
+                    img: posts_[index].img,
+                    caption: posts_[index].caption,
+                    avatar: posts_[index].avatar);
+              }),
         ),
       ),
     );
   }
+
+  List posts_ = [
+    Posts(
+        username: "jenan almulla",
+        img: "images\cyberteam.jpg",
+        caption: "2024 Cyber team",
+        avatar: "images\IMG_8257.jpg"),
+    Posts(
+        username: "jenan almulla",
+        img: "images\IMG_7240.jpg",
+        caption: "2024 AI team",
+        avatar: "images\IMG_8257.jpg"),
+  ];
 }
