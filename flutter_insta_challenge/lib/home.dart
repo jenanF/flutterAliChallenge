@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.grey,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -44,10 +44,13 @@ class HomePage extends StatelessWidget {
               itemCount: posts_.length,
               itemBuilder: (context, index) {
                 return Posts(
-                    username: posts_[index].username,
-                    img: posts_[index].img,
-                    caption: posts_[index].caption,
-                    avatar: posts_[index].avatar);
+                  username: posts_[index].username,
+                  img: posts_[index].img,
+                  caption: posts_[index].caption,
+                  avatar: posts_[index].avatar,
+                  like: posts_[index].like,
+                  liked: () {},
+                );
               }),
         ),
       ),
@@ -56,14 +59,24 @@ class HomePage extends StatelessWidget {
 
   List posts_ = [
     Posts(
-        username: "jenan almulla",
-        img: "images\cyberteam.jpg",
-        caption: "2024 Cyber team",
-        avatar: "images\IMG_8257.jpg"),
+      username: "jenan almulla",
+      img:
+          "https://media.licdn.com/dms/image/D4D22AQELILVqF2nOMw/feedshare-shrink_800/0/1695319707254?e=2147483647&v=beta&t=SmtJuMSD9eBRvQhixfGgvEoxegGr78k1yqY1TvZ12lk", //"images\cyberteam.jpg",
+      caption: "2024 Cyber team",
+      avatar:
+          "https://yt3.googleusercontent.com/nfQZ2DpWcffZJRQNqxG8qMdMNPso6_SzV-HuKrcp1InvIh3vPT8A0h-BDT4WOODiTDjqKPqQ=s900-c-k-c0x00ffffff-no-rj", //"flutter_insta_challenge\images\IMG_8257.jpg"
+      like: false,
+      liked: () {},
+    ),
     Posts(
-        username: "jenan almulla",
-        img: "images\IMG_7240.jpg",
-        caption: "2024 AI team",
-        avatar: "images\IMG_8257.jpg"),
+      username: "Rahaf Alenezi",
+      img:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTycCCO4w2zR_lKAV2XFzJx0WRRrqR0dUNCrLTNqDdhIoVQNGrfVl-rYdwGXsB7ec9aBNc&usqp=CAU", //"flutter_insta_challenge\images\IMG_7240.jpg",
+      caption: "2024 AI team",
+      avatar:
+          "https://yt3.googleusercontent.com/nfQZ2DpWcffZJRQNqxG8qMdMNPso6_SzV-HuKrcp1InvIh3vPT8A0h-BDT4WOODiTDjqKPqQ=s900-c-k-c0x00ffffff-no-rj",
+      like: false,
+      liked: () {},
+    ),
   ];
 }

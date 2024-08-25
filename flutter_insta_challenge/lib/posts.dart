@@ -6,17 +6,24 @@ class Posts extends StatelessWidget {
       required this.username,
       required this.img,
       required this.caption,
-      required this.avatar});
+      required this.avatar,
+      required this.like,
+      required this.liked});
 
   final String username;
   final String avatar;
   final String caption;
   final String img;
+  final bool like;
+  final VoidCallback liked;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10).copyWith(bottom: 0),
+      padding: const EdgeInsets.all(12).copyWith(
+        top: 20,
+        bottom: 0,
+      ),
       child: Container(
         // alignment: Alignment.center,
         child: Column(
@@ -25,16 +32,29 @@ class Posts extends StatelessWidget {
             Row(
               children: [
                 ClipOval(
-                  child: Image.asset(avatar),
+                  child: Image.network(
+                    avatar,
+                    height: 39,
+                    width: 39,
+                  ),
                 ),
-                Text(username)
+                SizedBox(
+                  width: 15,
+                ),
+                Text(
+                  username,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                )
               ],
             ),
-            Image.asset(
+            Image.network(
               img,
-              height: 100,
-              width: 100,
+              height: 330,
+              width: 330,
             ),
+            // SizedBox(
+            //   height: 6,
+            // ),
             Container(
                 alignment: Alignment.centerLeft,
                 child: Row(
@@ -46,21 +66,36 @@ class Posts extends StatelessWidget {
                     Text("  ${caption}"),
                   ],
                 )),
+            SizedBox(
+              height: 10,
+            ),
             Row(
               children: [
-                Icon(
-                  Icons.favorite_border,
-                  color: Colors.grey,
+                InkWell(
+                  onTap: liked,
+                  child: Icon(
+                    Icons.favorite_border,
+                    color: Colors.grey,
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
                 ),
                 Icon(
                   Icons.comment,
                   color: Colors.grey,
+                ),
+                SizedBox(
+                  width: 10,
                 ),
                 Icon(
                   Icons.share_sharp,
                   color: Colors.grey,
                 )
               ],
+            ),
+            SizedBox(
+              height: 15,
             )
           ],
         ),
