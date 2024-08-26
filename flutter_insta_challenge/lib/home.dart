@@ -1,8 +1,48 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_insta_challenge/posts.dart';
+import 'dart:js_interop';
 
-class HomePage extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter_insta_challenge/fav_provider.dart';
+import 'package:flutter_insta_challenge/posts.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_insta_challenge/fav_page.dart';
+
+class HomePage extends StatefulWidget {
   HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int selected_index = 0;
+
+  void addfavorite() {}
+  Future saveForm() async {
+    final isLiked = posts_[selected_index].like;
+
+    if (isLiked) {
+      final item = Posts(
+        username: posts_[selected_index].username,
+        img: posts_[selected_index].img,
+        caption: posts_[selected_index].caption,
+        avatar: posts_[selected_index].avatar,
+        like: posts_[selected_index].like,
+        liked: () {},
+      );
+      final provider = Provider.of<FavProvider>(context, listen: false);
+      provider.addfav(item);
+    }
+  }
+
+  void liking(post, index) {
+    posts_[index].like != posts_[index].like;
+
+    //List<Posts> fav(FavoritePage fv) => fv.favs;
+
+    if (posts_[index].like == true) {
+      //FavoritePage().favs.add(post);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 //import 'package:image_picker/image_picker.dart';
 
 class AddPostPage extends StatefulWidget {
@@ -15,17 +16,18 @@ class _AddPostPageState extends State<AddPostPage> {
 
   TextEditingController caption_ = TextEditingController();
 
-  // File? _image;
-  // XFile? _pickedFile;
-  // Future<void> _pickImage() async{
-  //   _pickedFile = await _picker.getImage(source: ImageSource.gallery);
-  //   if (_pickedFile != null){
-  //     setState(() {
-  //       _image = File(_pickedFile!.path);
-
-  //     });
-  //   }
-  // }
+  File? _image;
+  XFile? _pickedFile;
+  final _picker = ImagePicker();
+  Future<void> _pickImage() async {
+    _pickedFile = await _picker.pickImage(
+        source: ImageSource.gallery); //getImage(source: ImageSource.gallery);
+    if (_pickedFile != null) {
+      setState(() {
+        _image = File(_pickedFile!.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,14 +73,20 @@ class _AddPostPageState extends State<AddPostPage> {
                 padding: const EdgeInsets.all(20).copyWith(bottom: 0),
                 child: Transform.scale(
                   scale: 1.3,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Upload image",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.grey,
+                  child: GestureDetector(
+                    onTap: () {
+                      print("HEREEEEEEEEEE");
+                      _pickImage();
+                    },
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Upload image",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.grey,
+                      ),
                     ),
                   ),
                 ),

@@ -73,10 +73,15 @@ class Posts extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: liked,
-                  child: Icon(
-                    Icons.favorite_border,
-                    color: Colors.grey,
-                  ),
+                  child: like
+                      ? Icon(
+                          Icons.favorite,
+                          color: Colors.red,
+                        )
+                      : Icon(
+                          Icons.favorite_border,
+                          color: Colors.grey,
+                        ),
                 ),
                 SizedBox(
                   width: 10,
