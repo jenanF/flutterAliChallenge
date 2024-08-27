@@ -63,6 +63,6 @@ class _FavoritePageState extends State<FavoritePage> {
           ),
         ));
   }
-
-  List<Posts> favs = [];
 }
+
+List<Posts> favs = [];
