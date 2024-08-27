@@ -15,18 +15,17 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     search.addListener(queryListener);
   }
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    search.removeListener(queryListener);
-    search.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   // TODO: implement dispose
+  //   search.removeListener(queryListener);
+  //   search.dispose();
+  //   super.dispose();
+  // }
 
   void queryListener() {
     search_(search.text);
@@ -42,6 +41,25 @@ class _SearchPageState extends State<SearchPage> {
         item = posts_.where((e) => e.contains(query)).toList();
       });
     }
+  }
+
+  void showImage(index) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return Center(
+            child: Container(
+              height: 200,
+              width: 200,
+              alignment: Alignment.center,
+              child: Image.network(
+                index,
+                height: 190,
+                width: 190,
+              ),
+            ),
+          );
+        });
   }
 
   @override
@@ -63,7 +81,11 @@ class _SearchPageState extends State<SearchPage> {
                 itemBuilder: (context, index) {
                   //var check = item.isEmpty ? posts_[index] : item[index];
                   return InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      showImage(
+                        item.isEmpty ? posts_[index].img : item[index].img,
+                      );
+                    },
                     child: Padding(
                       padding: const EdgeInsets.all(12),
                       child: Card(
@@ -83,7 +105,7 @@ class _SearchPageState extends State<SearchPage> {
                               width: 10,
                             ),
                             Text(
-                              item.isEmpty
+                              item.length <= 0
                                   ? posts_[index].username
                                   : item[index].username,
                               style: TextStyle(fontWeight: FontWeight.bold),

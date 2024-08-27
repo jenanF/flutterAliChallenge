@@ -44,6 +44,12 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  void test_like(int index) {
+    setState(() {
+      posts_[index].like = !posts_[index].like;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,7 +95,10 @@ class _HomePageState extends State<HomePage> {
                   caption: posts_[index].caption,
                   avatar: posts_[index].avatar,
                   like: posts_[index].like,
-                  liked: () {},
+                  liked: () {
+                    test_like(index);
+                    print(posts_[index].like);
+                  },
                 );
               }),
         ),
