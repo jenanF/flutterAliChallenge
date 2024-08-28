@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  void test_like(int index) {
+  void test(int index) {
     setState(() {
       posts_[index].like = !posts_[index].like;
     });
@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                   avatar: posts_[index].avatar,
                   like: posts_[index].like,
                   liked: () {
-                    test_like(index);
+                    test(index);
                     print(posts_[index].like);
                   },
                 );
