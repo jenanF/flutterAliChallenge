@@ -19,13 +19,12 @@ class _SearchPageState extends State<SearchPage> {
     search.addListener(queryListener);
   }
 
-  // @override
-  // void dispose() {
-  //   // TODO: implement dispose
-  //   search.removeListener(queryListener);
-  //   search.dispose();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    search.removeListener(queryListener);
+    search.dispose();
+    super.dispose();
+  }
 
   void queryListener() {
     search_(search.text);
@@ -38,7 +37,7 @@ class _SearchPageState extends State<SearchPage> {
       });
     } else {
       setState(() {
-        item = posts_.where((e) => e.contains(query)).toList();
+        item = posts_.where((e) => e.username.contains(query)).toList();
       });
     }
   }
