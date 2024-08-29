@@ -73,7 +73,7 @@ class Posts extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: liked,
-                  child: like
+                  child: like == true
                       ? Icon(
                           Icons.favorite,
                           color: Colors.red,

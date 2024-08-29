@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_insta_challenge/fav_page.dart';
+import 'package:flutter_insta_challenge/home.dart';
 import 'package:flutter_insta_challenge/posts.dart';
 import 'package:provider/provider.dart';
 
@@ -31,9 +33,11 @@ class FavProvider extends ChangeNotifier {
     );
   }
 
-  bool likes(Posts p) => p.like;
+  bool likes = posts_[0].like;
 
   void addfav(Posts item) {
-    if (likes == true) {}
+    if (likes == true) {
+      favs.add(item);
+    }
   }
 }

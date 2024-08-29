@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
@@ -16,39 +18,44 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int selected_index = 0;
 
-  void addfavorite() {}
-  Future saveForm() async {
-    final isLiked = posts_[selected_index].like;
+  // void addfavorite() {}
+  // Future saveForm(index) async {
+  //   final isLiked = posts_[index].like;
 
-    if (isLiked) {
-      final item = Posts(
-        username: posts_[selected_index].username,
-        img: posts_[selected_index].img,
-        caption: posts_[selected_index].caption,
-        avatar: posts_[selected_index].avatar,
-        like: posts_[selected_index].like,
-        liked: () {},
-      );
-      final provider = Provider.of<FavProvider>(context, listen: false);
-      provider.addfav(item);
-    }
-  }
+  //   if (isLiked) {
+  //     final item = Posts(
+  //       username: posts_[index].username,
+  //       img: posts_[index].img,
+  //       caption: posts_[index].caption,
+  //       avatar: posts_[index].avatar,
+  //       like: posts_[index].like,
+  //       liked: () {},
+  //     );
+  //     final provider = Provider.of<FavProvider>(context, listen: false);
+  //     provider.addfav(item);
+  //   }
+  // }
 
   void liking(post, index) {
-    posts_[index].like != posts_[index].like;
-
-    //List<Posts> fav(FavoritePage fv) => fv.favs;
-
-    if (posts_[index].like == true) {
-      //FavoritePage().favs.add(post);
-    }
-  }
-
-  void test(int index) {
+    bool isLiked = posts_[index].like;
     setState(() {
-      posts_[index].like = !posts_[index].like;
+      isLiked = !isLiked;
+
+      if (isLiked) {
+        favs.add(post);
+      } else if (isLiked == false) {
+        favs.remove(post);
+      } else {
+        return;
+      }
     });
   }
+
+  // void test(int index) {
+  //   setState(() {
+  //     posts_[index].like = !posts_[index].like;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -96,8 +103,11 @@ class _HomePageState extends State<HomePage> {
                   avatar: posts_[index].avatar,
                   like: posts_[index].like,
                   liked: () {
-                    test(index);
+                    liking(posts_[index], index);
+                    //test(index);
                     print(posts_[index].like);
+                    //saveForm(index);
+                    print(favs);
                   },
                 );
               }),

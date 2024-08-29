@@ -10,6 +10,25 @@ class FavoritePage extends StatefulWidget {
 }
 
 class _FavoritePageState extends State<FavoritePage> {
+  void showImage(index) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return Center(
+            child: Container(
+              height: 200,
+              width: 200,
+              alignment: Alignment.center,
+              child: Image.network(
+                index,
+                height: 190,
+                width: 190,
+              ),
+            ),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,17 +43,19 @@ class _FavoritePageState extends State<FavoritePage> {
             ),
           ),
         ),
-        body: SafeArea(
-          child: Center(
-            child: ListView.builder(
-              itemCount: favs.length,
-              itemBuilder: (context, index) {
-                return favs.length <= 0
-                    ? Container()
-                    : InkWell(
-                        onTap: () {},
-                        child: Padding(
-                          padding: const EdgeInsets.all(12),
+        body: Center(
+          child: ListView.builder(
+            itemCount: favs.length,
+            itemBuilder: (context, index) {
+              return favs.length <= 0
+                  ? Container()
+                  : InkWell(
+                      onTap: () {
+                        showImage(favs[index].img);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Expanded(
                           child: Container(
                             height: 50,
                             child: Row(
@@ -57,9 +78,9 @@ class _FavoritePageState extends State<FavoritePage> {
                             ),
                           ),
                         ),
-                      );
-              },
-            ),
+                      ),
+                    );
+            },
           ),
         ));
   }
